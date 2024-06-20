@@ -82,9 +82,9 @@ python pg_spark.py
 ```
 You should see the following output
 ```shell 
-24/06/20 19:02:18 WARN Utils: Your hostname, starfeeld.local resolves to a loopback address: 127.0.0.1; using 192.168.68.62 instead (on interface en0)
-24/06/20 19:02:18 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
-24/06/20 19:02:18 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+24/06/20 19:07:50 WARN Utils: Your hostname, starfeeld.local resolves to a loopback address: 127.0.0.1; using 192.168.68.62 instead (on interface en0)
+24/06/20 19:07:50 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+24/06/20 19:07:50 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
 Setting default log level to "WARN".
 To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
 +----+--------------------+-------------+--------------------+------------+----------+----------+---------------+---------+---------+--------------------+--------------------+--------------------+-------+-----+
@@ -111,4 +111,31 @@ To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLeve
 | BGD|          Bangladesh|         Asia|Southern and Cent...|    143998.0|      1971| 129155000|           60.2| 32852.00| 31966.00|          Bangladesh|            Republic|   Shahabuddin Ahmad|    150|   BD|
 | BRB|            Barbados|North America|           Caribbean|       430.0|      1966|    270000|           73.0|  2223.00|  2186.00|            Barbados|Constitutional Mo...|        Elisabeth II|    174|   BB|
 +----+--------------------+-------------+--------------------+------------+----------+----------+---------------+---------+---------+--------------------+--------------------+--------------------+-------+-----+
-only showing top 20 rows```
+only showing top 20 rows
+
++----+--------------------+---------+--------------------+------------+----------+----------+---------------+----------+----------+--------------------+--------------------+--------------------+-------+-----+
+|code|                name|continent|              region|surface_area|indep_year|population|life_expectancy|       gnp|   gnp_old|          local_name|     government_form|       head_of_state|capital|code2|
++----+--------------------+---------+--------------------+------------+----------+----------+---------------+----------+----------+--------------------+--------------------+--------------------+-------+-----+
+| AFG|         Afghanistan|     Asia|Southern and Cent...|    652090.0|      1919|  22720000|           45.9|   5976.00|      NULL|Afganistan/Afqane...|     Islamic Emirate|       Mohammad Omar|      1|   AF|
+| ARE|United Arab Emirates|     Asia|         Middle East|     83600.0|      1971|   2441000|           74.1|  37966.00|  36846.00|Al-Imarat al-´Ara...|  Emirate Federation|Zayid bin Sultan ...|     65|   AE|
+| ARM|             Armenia|     Asia|         Middle East|     29800.0|      1991|   3520000|           66.4|   1813.00|   1627.00|            Hajastan|            Republic|    Robert Kotšarjan|    126|   AM|
+| AZE|          Azerbaijan|     Asia|         Middle East|     86600.0|      1991|   7734000|           62.9|   4127.00|   4100.00|          Azärbaycan|    Federal Republic|       Heydär Äliyev|    144|   AZ|
+| BHR|             Bahrain|     Asia|         Middle East|       694.0|      1971|    617000|           73.0|   6366.00|   6097.00|          Al-Bahrayn|  Monarchy (Emirate)|Hamad ibn Isa al-...|    149|   BH|
+| BGD|          Bangladesh|     Asia|Southern and Cent...|    143998.0|      1971| 129155000|           60.2|  32852.00|  31966.00|          Bangladesh|            Republic|   Shahabuddin Ahmad|    150|   BD|
+| BTN|              Bhutan|     Asia|Southern and Cent...|     47000.0|      1910|   2124000|           52.4|    372.00|    383.00|            Druk-Yul|            Monarchy|Jigme Singye Wang...|    192|   BT|
+| BRN|              Brunei|     Asia|      Southeast Asia|      5765.0|      1984|    328000|           73.6|  11705.00|  12460.00|   Brunei Darussalam|Monarchy (Sultanate)|Haji Hassan al-Bo...|    538|   BN|
+| PHL|         Philippines|     Asia|      Southeast Asia|    300000.0|      1946|  75967000|           67.5|  65107.00|  82239.00|           Pilipinas|            Republic|Gloria Macapagal-...|    766|   PH|
+| GEO|             Georgia|     Asia|         Middle East|     69700.0|      1991|   4968000|           64.5|   6064.00|   5924.00|          Sakartvelo|            Republic|  Eduard Ševardnadze|    905|   GE|
+| HKG|           Hong Kong|     Asia|        Eastern Asia|      1075.0|      NULL|   6782000|           79.5| 166448.00| 173610.00| Xianggang/Hong Kong|Special Administr...|         Jiang Zemin|    937|   HK|
+| IDN|           Indonesia|     Asia|      Southeast Asia|   1904569.0|      1945| 212107000|           68.0|  84982.00| 215002.00|           Indonesia|            Republic|   Abdurrahman Wahid|    939|   ID|
+| IND|               India|     Asia|Southern and Cent...|   3287263.0|      1947|1013662000|           62.5| 447114.00| 430572.00|        Bharat/India|    Federal Republic|Kocheril Raman Na...|   1109|   IN|
+| IRQ|                Iraq|     Asia|         Middle East|    438317.0|      1932|  23115000|           66.5|  11500.00|      NULL|            Al-´Iraq|            Republic|Saddam Hussein al...|   1365|   IQ|
+| IRN|                Iran|     Asia|Southern and Cent...|   1648195.0|      1906|  67702000|           69.7| 195746.00| 160151.00|                Iran|    Islamic Republic|Ali Mohammad Khat...|   1380|   IR|
+| ISR|              Israel|     Asia|         Middle East|     21056.0|      1948|   6217000|           78.6|  97477.00|  98577.00|    Yisra’el/Isra’il|            Republic|        Moshe Katzav|   1450|   IL|
+| TMP|          East Timor|     Asia|      Southeast Asia|     14874.0|      NULL|    885000|           46.0|      0.00|      NULL|         Timor Timur|Administrated by ...|José Alexandre Gu...|   1522|   TP|
+| JPN|               Japan|     Asia|        Eastern Asia|    377829.0|      -660| 126714000|           80.7|3787042.00|4192638.00|        Nihon/Nippon|Constitutional Mo...|             Akihito|   1532|   JP|
+| YEM|               Yemen|     Asia|         Middle East|    527968.0|      1918|  18112000|           59.8|   6041.00|   5729.00|            Al-Yaman|            Republic|  Ali Abdallah Salih|   1780|   YE|
+| JOR|              Jordan|     Asia|         Middle East|     88946.0|      1946|   5083000|           77.4|   7526.00|   7051.00|           Al-Urdunn|Constitutional Mo...|         Abdullah II|   1786|   JO|
++----+--------------------+---------+--------------------+------------+----------+----------+---------------+----------+----------+--------------------+--------------------+--------------------+-------+-----+
+only showing top 20 rows
+```
