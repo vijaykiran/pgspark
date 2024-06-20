@@ -1,36 +1,52 @@
 from pyspark.sql import SparkSession
-
-appName  = "PostgresPySpark"
-# Download the PostgreSQL JDBC driver from https://jdbc.postgresql.org/download.html
-jar_path = "" #/path/to/postgresql-xxxx.jar
-# Create SparkSession
-spark = SparkSession.builder \
-    .appName(appName) \
-    .config("spark.jars", jar_path) \
-    .getOrCreate()
-
-# Update PostgreSQL connection properties
-jdbc_url = "jdbc:postgresql://POSTGRES_HOST:5432/POSTGRES_DB"
-connection_properties = {
-    "user": "USERNAME",
-    "password": "PASSWORD",
-    "driver": "org.postgresql.Driver"
-}
-
-# Read entire table data from postgres into a DataFrame
-table_data_df = spark.read.jdbc(url=jdbc_url, table="your_table", properties=connection_properties)
-df.show()
-
-# Read table data with a specific column from postgres into a DataFrame
-table_data_df = spark.read.jdbc(url=jdbc_url, table="your_table", column="column_name", properties=connection_properties)
+class DBConfig:
+    def __init__(self, host, port, database, username, password):
+        self.connection_properties = {
+            "user": username,
+            "password": password,
+            "driver": "org.postgresql.Driver"
+        }
+        self.jdbc_url =     jdbc_url = f"jdbc:postgresql://{host}:{port}/{database}"
 
 
-# Read a data from a query into a DataFrame
-query = "(SELECT * FROM your_table WHERE column_name = 'value') AS query_table"
-query_data_df = spark.read.jdbc(url=jdbc_url, query=query, properties=connection_properties)
+class PgSparkUtil:
 
-# More options here https://spark.apache.org/docs/latest/sql-data-sources-jdbc.html
+    def __init__(self, appName, jar_path, db_config: DBConfig):
+        self.db_config = db_config
+        self.spark = SparkSession.builder \
+            .appName(appName) \
+            .config("spark.jars", jar_path) \
+            .getOrCreate()
+
+    def read_table_data(self , table_name):
+        table_data_df = self.spark.read.jdbc( table=table_name,
+                                             url=self.db_config.jdbc_url,
+                                              properties=self.db_config.connection_properties)
+        return table_data_df
+    
+    def read_query_data(self, query):
+        query_data_df = self.spark.read.jdbc( url=self.db_config.jdbc_url,
+                                              table=query,
+                                              properties=self.db_config.connection_properties)
+        return query_data_df
+
+if __name__ == "__main__":
+    appName  = "PostgresPySpark"
+    jar_path = "postgresql-42.7.3.jar"  #Replace this with the path of the postgresql jar file
+    # Replace DBConfig parameters using your database details
+    db_config = DBConfig(host="localhost", port="5432", username="world", password="world123", database="world-db") 
+    pg_spark = PgSparkUtil(appName, jar_path, db_config)
+
+    # Read data from a table into a dataframe
+    table_name = "country"
+    country_df = pg_spark.read_table_data(table_name)
+    # You can use any dataframe methods to process the data
+    country_df.show()
+
+    # Here is how you can read data from a query into a dataframe
+    query = "(select * from country where continent='Asia') as country"
+    asia_country_df = pg_spark.read_query_data(query)
+    asia_country_df.show()
 
 
-# Stop SparkSession
-spark.stop()
+
